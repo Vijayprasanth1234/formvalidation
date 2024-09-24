@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<style>
+        body{
+            background-image: url(formbackground.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+		#form {
+			background-image: url(orangebg.avif);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		#ip {
+			margin-left: 90px;
+			width: 60%;
+			height: 30px;
+			border-radius: 7px 7px 7px 7px;
+		}
+		#ip1 {
+			margin-left: 25px;
+			width: 60%;
+			height: 30px;
+			border-radius: 7px 7px 7px 7px;
+		}
+		#ip2 {
+			margin-left: 85px;
+			width: 60%;
+			height: 30px;
+			border-radius: 7px 7px 7px 7px;
+		}
+		#ip3 {
+			margin-left: 70px;
+			width: 60%;
+			height: 30px;
+			border-radius: 7px 7px 7px 7px;
+		}
+		#ip4 {
+			margin-left: 50px;
+			width: 60%;
+			height: 30px;
+			border-radius: 7px 7px 7px 7px;
+
+		}
+		#submit {
+			margin-left: 40%;
+			font-size: 20px;
+			margin-bottom: 30px;
+		}
+		h4 {
+			display: inline-block;
+		}
+		h1 {
+			color: rgb(248, 122, 5);
+		}
+		label {
+			margin-left: 2px;
+		}
+        #pswd,#pswd2,#pswd1{
+            margin-left: 200px;
+        }
+        fieldset{
+            background-color: grey;
+        }
+	</style>
+	<body>
+		<fieldset style="width: 50%; margin-left: 30%">
+			<legend><h1>Registration form</h1></legend>
+			<form id="form">
+				<br />
+				<label><h4>Enter Name:</h4></label>
+				<input type="text" id="ip" /><br />
+				<label><h4>Enter mail id:</h4></label>
+				<input type="email" id="ip2" onmouseleave="demo()"/>
+                <h4 id="pswd1"></h4>
+				<br />
+				<label><h4>Enter contact Number:</h4></label>
+				<input type="tel" id="ip1" /><br />
+				<label><h4>Enter Password:</h4></label>
+				<input type="password" id="ip3" onmouseleave="demo()" placeholder="Ex: vijay@12"  />
+				<h4 id="pswd"></h4>
+				<br />
+				<label><h4>Re-Enter Password:</h4></label>
+				<input type="password" id="ip4" onmouseleave="demo()" />
+                <h4 id="pswd2"></h4><br />
+				<input type="submit" id="submit" /><br />
+			</form>
+		</fieldset>
+		<script>
+			let form = document.getElementById("form");
+			let ip = document.getElementById("ip");
+			let ip1 = document.getElementById("ip1");
+			let ip2 = document.getElementById("ip2");
+			let ip3 = document.getElementById("ip3");
+			let pswd = document.getElementById("pswd");
+			let pswd2 = document.getElementById("pswd2");
+			let pswd1 = document.getElementById("pswd1");
+			function demo(){
+               
+        
+                let pattern = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[\W_]).{8}$/;
+			let input = ip3.value;
+            let input2=ip4.value
+			let matched = pattern.test(input);
+            let matched2 = pattern.test(input2);
+			if (!matched) {
+				pswd.innerHTML = "password Length should be 8characters";
+                pswd.style.color='white'
+                
+			}
+            else{
+                pswd.innerHTML="Password Format matched"
+                pswd.style.color="green"
+            }
+            if (!matched2) {
+				pswd2.innerHTML = "password Not Matched";
+                pswd2.style.color='white'
+			}
+            else{
+                pswd2.innerHTML="Password matched"
+                pswd2.style.color="green"
+            }
+        
+                if(ip3.value==ip4.value){
+                    pswd2.innerHTML="Password Matched"
+                }
+                else{
+                    pswd2.innerHTML="Password Not Matched"
+                }
+                let pattern1 = /^(?=.[a-z])(?=.[@])(?=.*\d)/;
+			
+            let input3=ip2.value;
+			let matched1 = pattern1.test(input3);
+           
+			if (!matched1) {
+				pswd1.innerHTML = "Enter Valid Email";
+                pswd1.style.color='white'
+                
+			}
+            else{
+                pswd1.innerHTML="We are saving your mail"
+                pswd1.style.color="green"
+            }
+            }
+
+			form.addEventListener("submit", (e) => {
+				e.preventDefault();
+                let div1=document.createElement("div");
+                document.body.appendChild(div1);
+                div1.style.border="2px solid grey"
+                div1.style.marginTop='100px'
+                div1.style.width="500px"; 
+                div1.style.marginLeft="400px"
+              let name1=document.createElement("p");
+              name1.innerHTML=`<h4>Entered Name:</h4> ${ip.value}`
+			name1.style.color="white"
+              div1.appendChild(name1);
+              let mailid=document.createElement("p");
+			  mailid.style.color="white"
+              mailid.innerHTML=`<h4>Entered Mailid:</h4> ${ip2.value}`
+              div1.appendChild(mailid);
+              let tele=document.createElement("p");
+              tele.innerHTML=`<h4>Entered contact Number: </h4>${ip1.value}`
+			  tele.style.color="white"
+              div1.appendChild(tele)
+              let pswd=document.createElement("p");
+              pswd.innerHTML=`<h4>Entered password:</h4> ${ip3.value}`
+			   pswd.style.color="white"
+              div1.appendChild(pswd)
+             let input1= document.createElement("input")
+             input1.setAttribute("type","checkbox");
+             div1.appendChild(input1);
+            //  let p1=document.createElement("p");
+            //  p1.innerHTML="I hereby acknowledge that I have read and understood the terms and conditions as provided in the 'KU Leuven Continuing Education - General terms and conditions of sale' as available at 10000 coders website and I agree to all of the terms. "
+            //  div1.innerHTML(p1)
+             let input2= document.createElement("input")
+             input2.setAttribute("type","submit");
+             div1.appendChild(input2);
+
+             
+
+
+        
+			});
+		</script>
+	</body>
+</html>
